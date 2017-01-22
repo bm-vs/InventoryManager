@@ -10,7 +10,10 @@
 		var db;
 		createDB();
 	</script>
-    <h1>Inventory Manager</h1>
+    <form action="javascript:searchDB()">
+		<input type="text" id="search">
+		<input type="submit" value="Submit">
+	</form>
 	<table id="items"></table>
 	<script type="text/javascript">
 		outputDB();
