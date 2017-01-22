@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Inventory Manager</title>
+	<script src="database.js"></script>
+  </head>
+  <body>
+	<script type="text/javascript">
+		var db;
+		createDB();
+	</script>
+    <h1>Inventory Manager</h1>
+	<table id="items"></table>
+	<script type="text/javascript">
+		outputDB();
+	</script>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
