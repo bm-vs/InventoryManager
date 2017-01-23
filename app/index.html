@@ -17,13 +17,18 @@
 
 <body>
 	<form action="javascript:searchItems()">
-		<input type="text" id="search">
-		<input type="submit" value="Submit">
+		<input type="text" id="search_name">
+		<select id="search_type">
+			<option value="-1">Any</option>
+		</select>
+		<input type="submit" value="Search">
 	</form>
 	<table id="items"></table>
 	<button id="addButton">Adicionar</button>
 	<form id="addForm" action="javascript:addItem()">
-		Nome: <input type="string" id="name"> Tipo: <select id="type"></select> Quantidade: <input type="number" id="quantity">
+		Nome: <input type="string" id="name">
+		Tipo: <select id="type"></select>
+		Quantidade: <input type="number" id="quantity">
 		<input type="submit" value="Add">
 	</form>
 </body>
@@ -37,7 +42,9 @@
 	var db;
 
 	createDB();
-	fillTypes();
+	//todo: remove this from index
+	fillTypes(document.getElementById("type"));
+	fillTypes(document.getElementById("search_type"));
 	outputItems();
 </script>
 

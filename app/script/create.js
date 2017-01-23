@@ -47,7 +47,7 @@ function addItem(){
 	quantity.value = "";
 }
 
-//returns all types
+//returs all types in a 2 dimentional array
 function getTypes(){
 	if(!types){
 		var result = db.exec("SELECT * FROM type");
@@ -69,12 +69,11 @@ function getTypeName(id){
 	return "Type not found";
 }
 
-//returs all types in a 2 dimentional array
-function fillTypes(){
+//fills the givven slect with all types
+function fillTypes(element){
 	var types = getTypes();
-	var select = document.getElementById("type");
 	for (var i = 0; i < types.length; i++) {
-		createOption(select, types[i][0], types[i][1]);
+		createOption(element, types[i][0], types[i][1]);
 	}
 }
 
