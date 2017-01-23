@@ -4,22 +4,18 @@ function outputDB() {
 	var result = db.exec("SELECT * FROM items");
 	var columns = result[0].columns;
 	var values = result[0].values;
-	
+
 	outputRows(columns, values);
 }
 
 // Output search items
-function searchDB() {
-	// Remove current items from table
-	var table = document.getElementById("items");
-	while(table.firstChild) {
-		table.removeChild(table.firstChild);
-	}
-	
+function searchItems() {
+	clearItemsTable();
+
 	// Get columns
 	var result = db.exec("SELECT * FROM items");
 	var columns = result[0].columns;
-	
+
 	// Get rows
 	var search = document.getElementById("search").value;
 	var stmt = db.prepare("SELECT * FROM items WHERE name LIKE ?");
@@ -28,7 +24,7 @@ function searchDB() {
 	while(stmt.step()) {
 		result.push(stmt.get());
 	}
-	
+
 	outputRows(columns, result);
 }
 
@@ -39,7 +35,7 @@ function outputRows(columns, values) {
 		createTextCell(row, columns[i], "th");
 	}
 	document.getElementById("items").appendChild(row);
-	
+
 	// Create rows
 	for (var i = 0; i < values.length; i++) {
 		// Create new row for each item
@@ -47,7 +43,7 @@ function outputRows(columns, values) {
 		for (var j = 0; j < columns.length; j++) {
 			createTextCell(row, values[i][j], "td");
 		}
-		
+
 		// Add edit and delete button
 		createButtonCell(row, "edit");
 		createButtonCell(row, "delete");
