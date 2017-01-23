@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Inventory Manager</title>
-	<script>window.$ = window.jQuery = require('./script/jquery-3.1.1.min.js');</script>
+	<script>
+		window.$ = window.jQuery = require('./script/jquery-3.1.1.min.js');
+	</script>
+	<script src="script/actions.js"></script>
 	<script src="script/create.js"></script>
 	<script src="script/read.js"></script>
 	<script src="script/update.js"></script>
 	<script src="script/delete.js"></script>
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
+
 <body>
 	<form action="javascript:searchDB()">
 		<input type="text" id="search">
 		<input type="submit" value="Submit">
 	</form>
-	<form action="javascript:addItem()">
-		Nome: <input type="string" id="name">
-		Tipo: <select id="type"></select>
-		Quantidade: <input type="number" id="quantity">
-		<input type="submit" value="Add">
-    </form>
 	<table id="items"></table>
+	<button id="addButton">Adicionar</button>
+	<form id="addForm" action="javascript:addItem()">
+		Nome: <input type="string" id="name"> Tipo: <select id="type"></select> Quantidade: <input type="number" id="quantity">
+		<input type="submit" value="Add">
+	</form>
 </body>
 
 <script type="text/javascript">
@@ -31,9 +35,10 @@
 	var fs = require('fs');
 	var sql = require('sql.js');
 	var db;
-	
+
 	createDB();
 	fillTypes();
 	outputDB();
 </script>
+
 </html>
