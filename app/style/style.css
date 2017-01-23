@@ -1,0 +1,24 @@
+td {
+  border-width: thin;
+  border-style: solid;
+  border-color: black;
+}
+th{
+  border-width: medium;
+  border-style: solid;
+  border-color: black;
+  border-right: none;
+  border-left: none;
+}
+
+table {
+    border-width: medium;
+    border-style: solid;
+    border-color: black;
+    margin: 0px;
+    border-spacing: 0px;
+}
+
+#addForm {
+    display: none;
+}
