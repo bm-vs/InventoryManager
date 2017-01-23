@@ -1,16 +1,22 @@
-$(document).ready(function() {
+(function(){
+  window.addEventListener("load", function(){
+    createDB();
+    outputItems();
 
-  createDB();
-  outputItems();
+    //add types to comboboxes AKA selects
+    fillTypes(document.getElementById("type"));
+  	fillTypes(document.getElementById("search_type"));
 
-  //add types to comboboxes AKA selects
-  fillTypes(document.getElementById("type"));
-	fillTypes(document.getElementById("search_type"));
+    //search buttons click
+    $("#search_button").on("click", searchItems);
+    $("#search_clear").on("click", clearSearch);
 
-  //search buttons click
-  $("#search_button").on("click", searchItems);
-  $("#search_clear").on("click", clearSearch);
+    //delete item on delete button
+  	$("#items").on("click", ".delete", deleteItem);
 
-  //delete item on delete button
-	$("#items").on("click", ".delete", deleteItem);
-});
+    //dropdown for adding items
+    $("#addButton").click(function() {
+        $("#addForm").toggle();
+    });
+  });
+})();
