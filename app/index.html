@@ -12,9 +12,17 @@
 </head>
 <body>
 	<form action="javascript:searchDB()">
-	<input type="text" id="search">
-	<input type="submit" value="Submit">
+		<input type="text" id="search">
+		<input type="submit" value="Submit">
 	</form>
+	<form action="javascript:addItem()">
+		Nome:<input type="string" id="name">
+		Tipo:
+		<select id="type">
+		</select>
+		Quantidade:<input type="number" id="quantity">
+		<input type="submit" value="Add">
+    </form>
 	<table id="items"></table>
 </body>
 
@@ -27,6 +35,7 @@
 	var db;
 	
 	createDB();
+	fillTypes();
 	outputDB();
 </script>
 </html>
