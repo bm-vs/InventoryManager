@@ -1,4 +1,5 @@
-var SQL_ITEMS_SELALL = "SELECT items.id, items.name, type.name, items.quantity FROM items INNER JOIN type ON type.id = items.type";
+var SQL_ITEMS_SELALL = "SELECT items.id, items.name, type.name, items.quantity, items.reference " +
+												"FROM items INNER JOIN type ON type.id = items.type";
 var SQL_ITEMS_SEARCH = SQL_ITEMS_SELALL + " WHERE items.name LIKE ? AND (? = '-1' OR items.type = ?)";
 
 // Output all items
@@ -15,19 +16,16 @@ function outputItems() {
 function searchItems() {
   clearItemsTable();
 
-	// Get columns
-	var result = db.exec("SELECT * FROM items");
-	var columns = result[0].columns;
-
 	var name = document.getElementById("search_name").value.trim();
 	var select = document.getElementById("search_type");
 	var type = select.options[select.selectedIndex].value;
 
-	var stmt = db.prepare(SQL_ITEMS_SEARCH);
-	console.log(type);
+	var result = db.prepare(SQL_ITEMS_SEARCH);
 	stmt.bind(['%' + name + '%', type, type]);
+
+	var columns = result[0].columns
 	var result = [];
-	while(stmt.step()) {
+	while(result.step()) {
 		result.push(stmt.get());
 	}
   outputRows(columns, result);
