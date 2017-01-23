@@ -16,7 +16,7 @@ function saveDB(){
 //refreshed items table
 function refreshDB(){
 	clearItemsTable();
-	outputDB();
+	outputItems()
 }
 
 //clears the output table
@@ -38,20 +38,35 @@ function insertItem(name, type, quantity){
 
 //gets the values from the input fiels and inserts the item to the DB
 function addItem(){
-	var name = document.getElementById("name").value;
+	var name = document.getElementById("name");
 	var select = document.getElementById("type");
 	var type = select.options[select.selectedIndex].value;
-	var quantity = document.getElementById("quantity").value;
-	insertItem(name, type, quantity);
+	var quantity = document.getElementById("quantity");
+	insertItem(name.value, type, quantity.value);
+	name.value = "";
+	quantity.value = "";
 }
 
-//returns
+//returns all types
 function getTypes(){
 	if(!types){
 		var result = db.exec("SELECT * FROM type");
 		types = result[0].values;
 	}
 	return types;
+}
+
+//returns the type name of a given type id
+function getTypeName(id){
+	var types = getTypes()
+	var i = 0;
+	while(i < types.length && id != types[i][0]){
+		i++;
+	}
+	if(i < types.length){
+		return types[i][1];
+	}
+	return "Type not found";
 }
 
 //returs all types in a 2 dimentional array
