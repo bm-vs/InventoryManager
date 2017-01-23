@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Inventory Manager</title>
-	<script>window.$ = window.jQuery = require('./jquery-3.1.1.min.js');</script>
+	<script>window.$ = window.jQuery = require('./script/jquery-3.1.1.min.js');</script>
 	<script src="script/create.js"></script>
 	<script src="script/read.js"></script>
 	<script src="script/update.js"></script>
@@ -16,11 +16,9 @@
 		<input type="submit" value="Submit">
 	</form>
 	<form action="javascript:addItem()">
-		Nome:<input type="string" id="name">
-		Tipo:
-		<select id="type">
-		</select>
-		Quantidade:<input type="number" id="quantity">
+		Nome: <input type="string" id="name">
+		Tipo: <select id="type"></select>
+		Quantidade: <input type="number" id="quantity">
 		<input type="submit" value="Add">
     </form>
 	<table id="items"></table>
@@ -28,7 +26,7 @@
 
 <script type="text/javascript">
 	// You can also require other files to run in this process
-	require('./renderer.js');
+	require('./script/renderer.js');
 	// Module for database
 	var fs = require('fs');
 	var sql = require('sql.js');
