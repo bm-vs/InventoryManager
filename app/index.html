@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Inventory Manager</title>
-	<script src="database.js"></script>
-  </head>
-  <body>
-	<script type="text/javascript">
-		var db;
-		createDB();
-	</script>
-    <form action="javascript:searchDB()">
-		<input type="text" id="search">
-		<input type="submit" value="Submit">
+<head>
+	<meta charset="UTF-8">
+	<title>Inventory Manager</title>
+	<script>window.$ = window.jQuery = require('./jquery-3.1.1.min.js');</script>
+	<script src="script/create.js"></script>
+	<script src="script/read.js"></script>
+	<script src="script/update.js"></script>
+	<script src="script/delete.js"></script>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+	<form action="javascript:searchDB()">
+	<input type="text" id="search">
+	<input type="submit" value="Submit">
 	</form>
 	<table id="items"></table>
-	<script type="text/javascript">
-		outputDB();
-	</script>
-  </body>
+</body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+<script type="text/javascript">
+	// You can also require other files to run in this process
+	require('./renderer.js');
+	// Module for database
+	var fs = require('fs');
+	var sql = require('sql.js');
+	var db;
+	
+	createDB();
+	outputDB();
+</script>
 </html>

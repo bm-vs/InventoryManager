@@ -1,13 +1,3 @@
-// Module for database
-var fs = require('fs');
-var sql = require('sql.js');
-
-// Load database.
-function createDB() {
-	var filebuffer = fs.readFileSync('inventory.db');
-	db = new sql.Database(filebuffer);
-}
-
 // Output all items
 function outputDB() {
 	// Get all items from database
@@ -46,7 +36,7 @@ function outputRows(columns, values) {
 	// Create columns
 	var row = document.createElement("tr");
 	for (var i = 0; i < columns.length; i++) {
-		createRow(row, columns[i], "th");
+		createTextCell(row, columns[i], "th");
 	}
 	document.getElementById("items").appendChild(row);
 	
@@ -55,15 +45,28 @@ function outputRows(columns, values) {
 		// Create new row for each item
 		var row = document.createElement("tr");
 		for (var j = 0; j < columns.length; j++) {
-			createRow(row, values[i][j], "td");
+			createTextCell(row, values[i][j], "td");
 		}
+		
+		// Add edit and delete button
+		createButtonCell(row, "edit");
+		createButtonCell(row, "delete");
 		document.getElementById("items").appendChild(row);
 	}
 }
 
-function createRow(row, value, type) {
+function createTextCell(row, value, type) {
 	var cell = document.createElement(type);
 	var textnode = document.createTextNode(value);
 	cell.appendChild(textnode);
+	row.appendChild(cell);
+}
+
+function createButtonCell(row, value) {
+	var cell = document.createElement("td");
+	var button = document.createElement("button");
+	button.innerHTML = value;
+	button.className = value;
+	cell.appendChild(button);
 	row.appendChild(cell);
 }
