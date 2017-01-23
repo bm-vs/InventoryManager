@@ -12,17 +12,19 @@
 	<script src="script/read.js"></script>
 	<script src="script/update.js"></script>
 	<script src="script/delete.js"></script>
+	<script src="script/init.js"></script>
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 
 <body>
-	<form action="javascript:searchItems()">
-		<input type="text" id="search_name">
-		<select id="search_type">
-			<option value="-1">Any</option>
-		</select>
-		<input type="submit" value="Search">
-	</form>
+
+	Search name: <input type="text" id="search_name">
+	type: <select id="search_type">
+		<option value="-1">Any</option>
+	</select>
+	<input type="button" id="search_button" value="Search" />
+	<input type="button" id="search_clear" value="Clear" />
+
 	<table id="items"></table>
 	<button id="addButton">Adicionar</button>
 	<form id="addForm" action="javascript:addItem()">
@@ -40,12 +42,6 @@
 	var fs = require('fs');
 	var sql = require('sql.js');
 	var db;
-
-	createDB();
-	//todo: remove this from index
-	fillTypes(document.getElementById("type"));
-	fillTypes(document.getElementById("search_type"));
-	outputItems();
 </script>
 
 </html>

@@ -1,3 +1,7 @@
+body {
+  font-family: sans-serif;
+}
+
 th{
   background-color: rgb(138, 219, 207);
 }
@@ -7,9 +11,11 @@ td,th{
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+
 tr:nth-child(even){
   background-color: #f5f5f5;
 }
+
 tr:hover {
   background-color:#656565;
 }

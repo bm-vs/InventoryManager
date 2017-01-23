@@ -34,29 +34,29 @@ function searchItems() {
 }
 
 function outputRows(columns, values) {
-    // Create columns
-    var row = document.createElement("tr");
-    for (var i = 0; i < columns.length; i++) {
-        createTextCell(row, columns[i], "th");
-    }
-    for (var i = 0; i < 2; i++) {
-        createTextCell(row, "", "th");
-    }
-    document.getElementById("items").appendChild(row);
+  // Create columns
+  var row = document.createElement("tr");
+  for (var i = 0; i < columns.length; i++) {
+      createTextCell(row, columns[i], "th");
+  }
+  for (var i = 0; i < 2; i++) {
+      createTextCell(row, "", "th");
+  }
+  document.getElementById("items").appendChild(row);
 
-    // Create rows
-    for (var i = 0; i < values.length; i++) {
-        // Create new row for each item
-        var row = document.createElement("tr");
-        for (var j = 0; j < columns.length; j++) {
-            createTextCell(row, values[i][j], "td");
-        }
+  // Create rows
+  for (var i = 0; i < values.length; i++) {
+      // Create new row for each item
+      var row = document.createElement("tr");
+      for (var j = 0; j < columns.length; j++) {
+          createTextCell(row, values[i][j], "td");
+      }
 
-        // Add edit and delete button
-        createButtonCell(row, "edit");
-        createButtonCell(row, "delete");
-        document.getElementById("items").appendChild(row);
-    }
+      // Add edit and delete button
+      createButtonCell(row, "edit");
+      createButtonCell(row, "delete");
+      document.getElementById("items").appendChild(row);
+  }
 }
 
 function createTextCell(row, value, type) {
@@ -67,10 +67,17 @@ function createTextCell(row, value, type) {
 }
 
 function createButtonCell(row, value) {
-    var cell = document.createElement("td");
-    var button = document.createElement("button");
-    button.innerHTML = value;
-    button.className = value;
-    cell.appendChild(button);
-    row.appendChild(cell);
+	var cell = document.createElement("td");
+	var button = document.createElement("button");
+	button.innerHTML = value;
+	button.className = value;
+	cell.appendChild(button);
+	row.appendChild(cell);
+}
+
+function clearSearch(){
+	refreshDB();
+
+	$("#search_name").val("");
+	$("#search_type").val('2');
 }
