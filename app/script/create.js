@@ -28,7 +28,7 @@ function clearItemsTable(){
 }
 
 //insret an item to the database
-function insertItem(name, type, quantity){
+function insertItem(name, type, quantity,reference){
 	var submission = db.prepare("INSERT INTO items VALUES (?,?,?,?,?)");
 	submission.bind([,name,type,quantity,reference]);
 	submission.run();
