@@ -29,8 +29,8 @@ function clearItemsTable(){
 
 //insret an item to the database
 function insertItem(name, type, quantity){
-	var submission = db.prepare("INSERT INTO items VALUES (?,?,?,?)");
-	submission.bind([,name,type,quantity]);
+	var submission = db.prepare("INSERT INTO items VALUES (?,?,?,?,?)");
+	submission.bind([,name,type,quantity,reference]);
 	submission.run();
 	saveDB();
 	refreshDB();
@@ -42,9 +42,11 @@ function addItem(){
 	var select = document.getElementById("type");
 	var type = select.options[select.selectedIndex].value;
 	var quantity = document.getElementById("quantity");
-	insertItem(name.value, type, quantity.value);
+	var reference = document.getElementById("reference");
+	insertItem(name.value, type, quantity.value,reference.value);
 	name.value = "";
 	quantity.value = "";
+	reference.value="";
 }
 
 //returs all types in a 2 dimentional array
