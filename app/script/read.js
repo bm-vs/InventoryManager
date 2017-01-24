@@ -1,4 +1,5 @@
-var SQL_ITEMS_SELALL = "SELECT items.id, items.name, type.name, items.quantity, items.reference " +
+var SQL_ITEMS_SELALL = "SELECT items.id as ID, items.name AS Name, type.name AS Type, " +
+ 												"items.quantity as Quantity, items.reference as Reference " +
 												"FROM items INNER JOIN type ON type.id = items.type";
 var SQL_ITEMS_SEARCH = SQL_ITEMS_SELALL + " WHERE items.name LIKE ? AND (? = '-1' OR items.type = ?)";
 
@@ -20,14 +21,23 @@ function searchItems() {
 	var select = document.getElementById("search_type");
 	var type = select.options[select.selectedIndex].value;
 
-	var result = db.prepare(SQL_ITEMS_SEARCH);
-	stmt.bind(['%' + name + '%', type, type]);
+	//todo remove doblue querry
+	// Get columns
+	var result = db.exec(SQL_ITEMS_SELALL);
+	var columns = result[0].columns;
 
-	var columns = result[0].columns
+	var name = document.getElementById("search_name").value.trim();
+	var select = document.getElementById("search_type");
+	var type = select.options[select.selectedIndex].value;
+
+	var stmt = db.prepare(SQL_ITEMS_SEARCH);
+	console.log(type);
+	stmt.bind(['%' + name + '%', type, type]);
 	var result = [];
-	while(result.step()) {
+	while(stmt.step()) {
 		result.push(stmt.get());
 	}
+
   outputRows(columns, result);
 }
 
@@ -51,8 +61,8 @@ function outputRows(columns, values) {
       }
 
       // Add edit and delete button
-      createButtonCell(row, "edit");
-      createButtonCell(row, "delete");
+      createButtonCell(row, "Edit");
+      createButtonCell(row, "Delete");
       document.getElementById("items").appendChild(row);
   }
 }

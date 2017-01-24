@@ -12,7 +12,9 @@
     $("#search_clear").on("click", clearSearch);
 
     //delete item on delete button
-  	$("#items").on("click", ".delete", deleteItem);
+  	$("#items .Delete").on("click", deleteItem);
+    //edit item on click
+    $("#items .Edit").on("click", editItem);
 
     //dropdown for adding items
     $("#addButton").click(function() {

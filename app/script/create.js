@@ -28,7 +28,7 @@ function clearItemsTable(){
 }
 
 //insret an item to the database
-function insertItem(name, type, quantity,reference){
+function insertItem(name, type, quantity, reference){
 	var submission = db.prepare("INSERT INTO items VALUES (?,?,?,?,?)");
 	submission.bind([,name,type,quantity,reference]);
 	submission.run();
@@ -77,6 +77,7 @@ function fillTypes(element){
 	for (var i = 0; i < types.length; i++) {
 		createOption(element, types[i][0], types[i][1]);
 	}
+	return element;
 }
 
 //creates an oprion a select
