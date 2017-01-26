@@ -16,7 +16,12 @@ function saveDB(){
 //refreshed items table
 function refreshDB(){
 	clearItemsTable();
-	outputItems()
+	outputItems();
+
+	//delete item on delete button
+	$("#items .Delete").on("click", deleteItem);
+	//edit item on click
+	$("#items .Edit").on("click", editItem);
 }
 
 //clears the output table
