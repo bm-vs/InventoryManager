@@ -1,7 +1,6 @@
 var editingRow = null;
 
 function editItem(){
-	console.log(this);
 	var srcButton = $(this);
 	var targetRow = srcButton.parent().parent();
 	if(editingRow == null){
@@ -31,39 +30,39 @@ function startEditingItem(srcButton, row){
 	reference.html($("<input value='" + reference.html() + "'>"));
 }
 
-
 function finishEditingItem(srcButton){
-	var id = editingRow.children().eq(0).html();
-	console.log(id);
+	var id =  parseInt(editingRow.children().eq(0).html());
 
 	var nameEl = editingRow.children().eq(1);
 	var name = nameEl.children().val();
-	nameEl.html(name);
 
 	var typeEl = editingRow.children().eq(2);
-	var type = typeEl.children().find(":selected").text();
-	typeEl.html(type);
+	var type = parseInt(typeEl.children().find(":selected").val());
 
 	var quantityEl = editingRow.children().eq(3);
-	var quantity = quantityEl.children().first().val();
-	quantityEl.html(quantity);
+	var quantity =  parseInt(quantityEl.children().first().val());
 
 	var referenceEl = editingRow.children().eq(4);
 	var reference = referenceEl.children().first().val();
-	referenceEl.html(reference);
 
-	updateItem(id, name, type, quantity, reference);
+	if (id && name && type && quantity) {
+		updateItem(id, name, type, quantity, reference)
 
-	editingRow = null;
-	srcButton.html("Edit");
+		nameEl.html(name);
+		typeEl.html(getTypeName(type));
+		quantityEl.html(quantity);
+		referenceEl.html(reference);
+		srcButton.html("Edit");
+		editingRow = null;
+	}
+	else{
+		confirm("Insira dados válidos")
+	}
 }
-
 
 function updateItem(id, name, type, quantity, reference){
 	var querry = db.prepare("UPDATE items SET name = ?, type = ?, quantity = ?, reference = ? WHERE id = ?");
 	querry.bind([name,type,quantity,reference, id]);
 	querry.run();
-
 	saveDB();
-	refreshDB();
 }
