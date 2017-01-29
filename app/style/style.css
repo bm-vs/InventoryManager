@@ -21,10 +21,15 @@ tr:hover {
 }
 
 table {
-    border-collapse:collapse;
-    width:100%;
+  border-collapse:collapse;
+  width:100%;
+  margin: 10px 0px;
 }
 
 #addForm {
-    display: none;
+  display: none;
+}
+
+label{
+  white-space:nowrap;
 }

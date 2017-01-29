@@ -17,20 +17,24 @@
 
 <body>
 
-	Search name: <input type="text" id="search_name">
-	type: <select id="search_type">
-		<option value="-1">Any</option>
-	</select>
+	Search
+	<label>Name: <input type="text" id="search_name"></label>
+	<label>
+		Type:
+		<select id="search_type">
+			<option value="-1">Any</option>
+		</select>
+	</label>
 	<input type="button" id="search_button" value="Search" />
 	<input type="button" id="search_clear" value="Clear" />
 
 	<table id="items"></table>
 	<button id="addButton">Adicionar</button>
 	<form id="addForm" action="javascript:addItem()">
-		Nome: <input type="string" id="name">
-		Tipo: <select id="type"></select>
-		Quantidade: <input type="number" id="quantity">
-    Referência: <input type="text" id="reference">
+		<label>Nome: <input type="string" id="name"></label>
+		<label>Tipo: <select id="type"></select></label>
+		<label>Quantidade: <input type="number" id="quantity"></label>
+    	<label>Referência: <input type="text" id="reference"></label>
 		<input type="submit" value="Add">
 	</form>
 </body>
